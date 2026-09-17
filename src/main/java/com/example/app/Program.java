@@ -36,17 +36,15 @@ public class Program implements CommandLineRunner{
 
         Order o = new Order(codigo, basic, discount);
 
-
-
-        ShippingService shippingService = new ShippingService();
-        double valorEntrega = shippingService.shippiment(o);
-
-        OrderService orderService = new OrderService();
+        OrderService orderService = new OrderService(new ShippingService());
         double valorTotal = orderService.total(o);
 
         System.out.println("Código: " + o.getCode());
         System.out.printf("Valor total: %.2f%n", valorTotal);
-        System.out.printf("Valor do frete: %.2f%n", valorEntrega);
+
+
+        sc.close();
+
 
 
 
