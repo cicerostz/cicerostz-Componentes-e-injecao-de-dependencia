@@ -14,6 +14,12 @@ import java.util.Scanner;
 @ComponentScan(basePackages = "com.example")
 public class Program implements CommandLineRunner{
 
+    private final OrderService orderService;
+
+    public Program(OrderService orderService){
+        this.orderService = orderService;
+    }
+
 	public static void main(String[] args) {
 		SpringApplication.run(Program.class, args);
 	}
@@ -36,7 +42,6 @@ public class Program implements CommandLineRunner{
 
         Order o = new Order(codigo, basic, discount);
 
-        OrderService orderService = new OrderService(new ShippingService());
         double valorTotal = orderService.total(o);
 
         System.out.println("Código: " + o.getCode());
